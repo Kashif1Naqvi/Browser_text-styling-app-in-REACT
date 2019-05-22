@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {Markup, Editor, Container, Column, RuleInput, StyleInput, Button, Document,Heading} from './styled'
+import {Markup, Editor, Container, Column, StyleInput, Button,Heading} from './styled'
+import 'bulma/css/bulma.css'
 import hljs from 'highlight.js'
 import {rando, getRandomPoem} from './utilis'
 // hightllight.js are use to convert text in to markup :)
@@ -37,39 +38,47 @@ class App extends Component {
     let fields = ['name','begin','end']
     for(let i = 0; i < rules; i++){
       array.push(
-        <Column key={i} >
-            <Column>
+        <div className="row" key={i} >
+            <div  className="column" >
               {fields.map( (field,index) => {
                 return(
-                  <Column key={index} className="form-group" >
-                      <RuleInput
-                        className="form-control"
-                        placeholder={field}
-                        value={this.state[`${field}${i}`]}
-                        onChange={this.handleChange}
-                        name={`${field}${i}`}
-                      />
-                  </Column>
+                  <div  key={index} className="column" >
+                      <div className="field">
+                        <div className="control" >
+                          <input
+                            className="input is-primary "
+                            placeholder={field}
+                            value={this.state[`${field}${i}`]}
+                            onChange={this.handleChange}
+                            name={`${field}${i}`}
+                          />
+                        </div>
+                      </div>
+                  </div >
                 )
               })}
-            </Column>
+            </div>
 
-            <StyleInput
-              cols="30"
-              rows="10"
-              placeholder="add css style on the base of 'begin' and 'end'
-                           firstly enter a text on 'Enter a text to design portion'
-                           then select letter from it,like 'Kashif' then in input fields
-                           type in begin field 'ka' and end field 'if' then try to write style
-                           in this portion like color:red then kashif color change to red.
-                           so let's try to do :)
-              "
-              className="form-control text-muted"
-              value={this.state[`style${i}`]}
-              onChange={this.handleChange}
-              name={`style${i}`}
-            />
-        </Column>
+            <div className="field">
+              <div className="control">
+                  <StyleInput
+                  cols="30"
+                  rows="10"
+                  placeholder="add css style on the base of 'begin' and 'end'
+                              firstly enter a text on 'Enter a text to design portion'
+                              then select letter from it,like 'Kashif' then in input fields
+                              type in begin field 'ka' and end field 'if' then try to write style
+                              in this portion like color:red then kashif color change to red.
+                              so let's try to do :)
+                  "
+                  className="textarea is-primary "
+                  value={this.state[`style${i}`]}
+                  onChange={this.handleChange}
+                  name={`style${i}`}
+                />
+              </div>
+            </div>
+        </div>
 
       )
     }
@@ -190,11 +199,11 @@ class App extends Component {
   return (
     <Container>
       <Column>
-      <Heading>Welcome to the Browser styling App</Heading>
+      <Heading className="title is-centered " >Welcome to the Browser styling App</Heading>
         {rules}
         <Button
           onClick={newFields}
-          className="btn btn-default"
+          className="button is-primary"
         >
           New Rule
         </Button>
@@ -202,25 +211,24 @@ class App extends Component {
       <Column>
         <Button
           onClick ={getRandomText}
-          className="btn btn-default"
+          className="button is-primary is-small"
         >
           Random Text
         </Button>
-        <Document className="form-group" >
           <Editor
-            className="form-control"
             cols="40"
-            rows="45"
+            rows="80"
             name={"editor"}
             onChange={handleChange}
             value={editor}
             placeholder="kashif"
+            className="textarea is-primary"
           />
           <Markup
             customStyles = {prepareStyles}
             dangerouslySetInnerHTML={convertToMarkup(editor) }
           />
-        </Document>
+        
       </Column>
     </Container>
   );

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bulma": "^0.7.5",
     "highlight": "^0.2.4",
     "highlight.js": "^9.15.6",
     "react": "^16.8.6",

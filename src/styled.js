@@ -1,4 +1,5 @@
 import Styled from 'styled-components'
+
 export const Heading = Styled.h1`
     font-weight:4px bold
     color: white
@@ -35,13 +36,7 @@ export const Button = Styled.button`
 `
 
 export const StyleInput = Styled.textarea`
-    margin:4px
-    padding:9px
-    font-size:20px
-    border:solid grey 1px
-    background:black
-    color:green
-    font-style:italic
+
 `
 export const Document = Styled.div`
     display:flex
@@ -62,20 +57,6 @@ export const Markup = Styled.div`
     ${({customStyles})=>customStyles }
 `
 export const Editor = Styled.textarea`
-    position:absolute
-    margin:0
-    padding:0
-    border:0
-    width:550px
-    height:800px
-    color:transparent
-    z-index:1
-    outline:0
-    background-color: transparent
-    font-size: 18px
-    line-height: 18px
-    font-family:monospace
-    caret-color:black
     
 
 
